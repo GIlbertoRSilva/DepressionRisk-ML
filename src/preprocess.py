@@ -1,5 +1,4 @@
 # preprocess.py
-
 import os
 import pandas as pd
 from pathlib import Path
@@ -14,18 +13,11 @@ RAW_PATH = os.path.abspath(RAW_PATH)
 PROCESSED_PATH = "../data/processed/student_depression_dataset_cleaned.csv"
 
 
-# ============================================================
-# 1. Carregar dataset bruto
-# ============================================================
 
 def load_raw_dataset(path: str = RAW_PATH) -> pd.DataFrame:
-    print("📥 Dataset bruto carregado.")
+    print("Dataset bruto carregado.")
     return pd.read_csv(path)
 
-
-# ============================================================
-# 2. Remover linhas com valores inconsistentes
-# ============================================================
 
 def remove_rows_with_inconsistent_values(df: pd.DataFrame) -> pd.DataFrame:
     inconsistent_values = [
@@ -34,20 +26,15 @@ def remove_rows_with_inconsistent_values(df: pd.DataFrame) -> pd.DataFrame:
         "N/A", "None"
     ]
 
-    # Remove linhas contendo QUALQUER um desses valores
+
     mask = ~df.isin(inconsistent_values).any(axis=1)
     df = df[mask]
 
-    print(f"🧹 Linhas inconsistentes removidas. Restaram {len(df)} linhas.")
+    print(f"Linhas inconsistentes removidas. Restaram {len(df)} linhas.")
     return df
 
-
-# ============================================================
-# 3. Remover colunas irrelevantes
-# ============================================================
-
 def remove_irrelevant_columns(df: pd.DataFrame) -> pd.DataFrame:
-    print("🧨 Removendo colunas irrelevantes...")
+    print("Removendo colunas irrelevantes...")
     cols_to_remove = [
         'id', 'City', 'Profession', 'Degree',
         'Job Satisfaction', 'Work Pressure'
@@ -57,12 +44,8 @@ def remove_irrelevant_columns(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# ============================================================
-# 4. Mapear valores categóricos
-# ============================================================
-
 def treat_values(df: pd.DataFrame) -> pd.DataFrame:
-    print("🔧 Tratando valores categóricos...")
+    print("Tratando valores categóricos...")
 
     binary_map = {"Yes": 1, "No": 0}
     gender_map = {"Male": 0, "Female": 1}
@@ -92,27 +75,13 @@ def treat_values(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# ============================================================
-# 5. Filtrar idade
-# ============================================================
-
 def filter_age(df: pd.DataFrame) -> pd.DataFrame:
-    print("🎯 Filtrando idades acima de 45...")
+    print("Filtrando idades acima de 45...")
     return df[df["Age"] <= 45]
-
-
-# ============================================================
-# 6. Remover NA
-# ============================================================
 
 def drop_missing(df: pd.DataFrame) -> pd.DataFrame:
     print("🧼 Removendo linhas com valores NA...")
     return df.dropna()
-
-
-# ============================================================
-# 7. Split train/test
-# ============================================================
 
 def split_data(df):
     from pathlib import Path
@@ -136,16 +105,11 @@ def split_data(df):
     train_df.to_csv(output_train, index=False)
     test_df.to_csv(output_test, index=False)
 
-    print("📁 Arquivos de treino e teste gerados com sucesso!")
+    print("Arquivos de treino e teste gerados com sucesso!")
     return train_df, test_df
 
-
-# ============================================================
-# 8. Pipeline principal
-# ============================================================
-
 def preprocess_pipeline():
-    print("\n🚀 Iniciando pré-processamento...\n")
+    print("Iniciando pré-processamento...\n")
 
     df = load_raw_dataset()
     df = remove_rows_with_inconsistent_values(df)
@@ -154,14 +118,14 @@ def preprocess_pipeline():
     df = filter_age(df)
     df = drop_missing(df)
 
-    print(f"💾 Salvando dataset limpo: {PROCESSED_PATH}")
+    print(f"Salvando dataset limpo: {PROCESSED_PATH}")
     Path("../data/processed").mkdir(parents=True, exist_ok=True)
     df.to_csv(PROCESSED_PATH, index=False)
 
-    print("✂️ Realizando Split em treino e teste...")
+    print("Realizando Split em treino e teste...")
     split_data(df)
 
-    print("\n✅ Pré-processamento concluído com sucesso!\n")
+    print("\nPré-processamento concluído com sucesso!\n")
     return df
 
 
