@@ -89,6 +89,22 @@ def evaluate_on_test(pipeline,X_test,y_test,threshold=0.5):
     print(f"Recall:    {recall_score(y_test, preds, zero_division=0):.4f}")
     print(f"F1-score:  {f1_score(y_test, preds, zero_division=0):.4f}")
 
+def train_final_model(model, X, y, use_scaler=True, use_smote=False, smote=None):
+    
+    steps = []
+
+    if use_scaler:
+        steps.append(("scaler", StandardScaler()))
+
+    if use_smote and smote is not None:
+        steps.append(("smote", smote))
+
+    steps.append(("model", model))
+
+    pipeline = Pipeline(steps)
+    pipeline.fit(X, y)
+
+    return pipeline
 
 def run_gridsearch(
     pipeline,

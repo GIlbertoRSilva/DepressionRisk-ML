@@ -9,7 +9,8 @@ from datetime import datetime
 from pathlib import Path
 import joblib
 
-DEFAULT_MODEL_DIR = Path("models")
+DEFAULT_MODEL_DIR = Path(__file__).resolve().parents[1] / "models"
+
 
 def ensure_model_dir(model_dir: Path | str = DEFAULT_MODEL_DIR):
     model_dir = Path(model_dir)
@@ -26,6 +27,8 @@ def save_model(
     metadata: dict | None = None,
     overwrite: bool = False
 ) -> str:
+    
+    print(f"Salvando o Modelo: {model_name} ")
 
     model_dir = ensure_model_dir(model_dir)
     model_path = model_dir / model_name
@@ -46,6 +49,7 @@ def save_model(
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=4, ensure_ascii=False)
 
+    print(f"{model_name} Salvo Com Sucesso")
     return str(model_path)
 
 def load_model(model_dir: str | Path = DEFAULT_MODEL_DIR, model_name: str = "model.joblib"):
