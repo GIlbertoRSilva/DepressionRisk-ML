@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 from sklearn.metrics import (
     confusion_matrix,
@@ -13,7 +14,6 @@ PALETA = ["#6EC6FF", "#4AA3FF", "#1E88E5", "#0D47A1"]
 
 
 def plot_confusion_matrix(y_true, y_pred, labels=None):
-
     cm = confusion_matrix(y_true, y_pred)
     cm_percent = cm.astype("float") / cm.sum(axis=1, keepdims=True) * 100
 
@@ -28,7 +28,6 @@ def plot_confusion_matrix(y_true, y_pred, labels=None):
         ax.set_yticks(range(len(labels)))
         ax.set_xticklabels(labels)
         ax.set_yticklabels(labels)
-
 
     for i in range(cm_percent.shape[0]):
         for j in range(cm_percent.shape[1]):
@@ -52,7 +51,6 @@ def plot_roc_curve(y_true, y_proba):
     roc_auc = auc(fpr, tpr)
 
     fig, ax = plt.subplots(figsize=(5, 4))
-    
     ax.plot(fpr, tpr, label=f"AUC = {roc_auc:.3f}", color=PALETA[2], linewidth=2)
     ax.plot([0, 1], [0, 1], linestyle="--", color=PALETA[0])
 
@@ -68,7 +66,6 @@ def plot_precision_recall_curve(y_true, y_proba):
     precision, recall, _ = precision_recall_curve(y_true, y_proba)
 
     fig, ax = plt.subplots(figsize=(5, 4))
-    
     ax.plot(recall, precision, color=PALETA[3], linewidth=2)
 
     ax.set_xlabel("Recall")
@@ -101,7 +98,6 @@ def plot_learning_curve(
     val_mean = val_scores.mean(axis=1)
 
     fig, ax = plt.subplots(figsize=(6, 4))
-    
     ax.plot(train_sizes, train_mean, label="Treino", color=PALETA[1], linewidth=2)
     ax.plot(train_sizes, val_mean, label="Validação", color=PALETA[3], linewidth=2)
 
@@ -114,7 +110,6 @@ def plot_learning_curve(
 
 
 def plot_model_comparison(results_dict):
-
     metricas = list(next(iter(results_dict.values())).keys())
 
     results_pct = {
@@ -135,7 +130,6 @@ def plot_model_comparison(results_dict):
 
     for i, metrica in enumerate(metricas):
         valores = [v[i] for v in valores_plot]
-
         bars = plt.bar(
             x + (i - (len(metricas) - 1) / 2) * largura,
             valores,
@@ -143,7 +137,6 @@ def plot_model_comparison(results_dict):
             label=metrica.capitalize(),
             color=PALETA[i % len(PALETA)]
         )
-
         for bar, v in zip(bars, valores):
             plt.text(
                 bar.get_x() + bar.get_width() / 2,
@@ -155,7 +148,6 @@ def plot_model_comparison(results_dict):
 
     ymax = max(max(vals) for vals in results_pct.values()) + 5
     plt.ylim(75, ymax)
-
     plt.ylabel("Percentual (%)")
     plt.xticks(x, modelos_ordenados)
     plt.title("Comparação dos Modelos por Ranking")
@@ -165,10 +157,37 @@ def plot_model_comparison(results_dict):
     plt.show()
 
 
+def plot_model_heatmap(results_dict):
+    """
+    Cria um heatmap comparando todas as métricas de todos os modelos.
+    """
+    import seaborn as sns
+
+    metricas = list(next(iter(results_dict.values())).keys())
+    df = pd.DataFrame({
+        model: [v * 100 for v in results_dict[model].values()]
+        for model in results_dict
+    }, index=metricas).T
+
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(
+        df,
+        annot=True,
+        fmt=".2f",
+        cmap=sns.color_palette(PALETA, as_cmap=True),
+        cbar_kws={"label": "Percentual (%)"},
+        linewidths=0.5
+    )
+    plt.title("Heatmap de Métricas dos Modelos")
+    plt.ylabel("Modelos")
+    plt.xlabel("Métricas")
+    plt.tight_layout()
+    plt.show()
+
+
 def rank_models(results_dict):
     medias = {
         model: np.mean(list(metrics.values()))
         for model, metrics in results_dict.items()
     }
-
     return sorted(medias.items(), key=lambda x: x[1], reverse=True)
