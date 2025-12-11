@@ -1,5 +1,3 @@
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -10,6 +8,8 @@ from sklearn.metrics import (
     precision_recall_curve
 )
 from sklearn.model_selection import learning_curve
+
+PALETA = ["#6EC6FF", "#4AA3FF", "#1E88E5", "#0D47A1"]
 
 
 def plot_confusion_matrix(y_true, y_pred, labels=None):
@@ -29,6 +29,7 @@ def plot_confusion_matrix(y_true, y_pred, labels=None):
         ax.set_xticklabels(labels)
         ax.set_yticklabels(labels)
 
+
     for i in range(cm_percent.shape[0]):
         for j in range(cm_percent.shape[1]):
             ax.text(
@@ -36,7 +37,8 @@ def plot_confusion_matrix(y_true, y_pred, labels=None):
                 i,
                 f"{cm_percent[i, j]:.1f}%",
                 ha="center",
-                va="center"
+                va="center",
+                color="black"
             )
 
     plt.title("Matriz de Confusão (%)")
@@ -44,13 +46,15 @@ def plot_confusion_matrix(y_true, y_pred, labels=None):
     plt.tight_layout()
     return fig
 
+
 def plot_roc_curve(y_true, y_proba):
     fpr, tpr, _ = roc_curve(y_true, y_proba)
     roc_auc = auc(fpr, tpr)
 
     fig, ax = plt.subplots(figsize=(5, 4))
-    ax.plot(fpr, tpr, label=f"AUC = {roc_auc:.3f}")
-    ax.plot([0, 1], [0, 1], linestyle="--")
+    
+    ax.plot(fpr, tpr, label=f"AUC = {roc_auc:.3f}", color=PALETA[2], linewidth=2)
+    ax.plot([0, 1], [0, 1], linestyle="--", color=PALETA[0])
 
     ax.set_xlabel("False Positive Rate")
     ax.set_ylabel("True Positive Rate")
@@ -59,17 +63,20 @@ def plot_roc_curve(y_true, y_proba):
     plt.tight_layout()
     return fig
 
+
 def plot_precision_recall_curve(y_true, y_proba):
     precision, recall, _ = precision_recall_curve(y_true, y_proba)
 
     fig, ax = plt.subplots(figsize=(5, 4))
-    ax.plot(recall, precision)
+    
+    ax.plot(recall, precision, color=PALETA[3], linewidth=2)
 
     ax.set_xlabel("Recall")
     ax.set_ylabel("Precision")
     ax.set_title("Curva Precision–Recall")
     plt.tight_layout()
     return fig
+
 
 def plot_learning_curve(
     estimator,
@@ -94,8 +101,9 @@ def plot_learning_curve(
     val_mean = val_scores.mean(axis=1)
 
     fig, ax = plt.subplots(figsize=(6, 4))
-    ax.plot(train_sizes, train_mean, label="Treino")
-    ax.plot(train_sizes, val_mean, label="Validação")
+    
+    ax.plot(train_sizes, train_mean, label="Treino", color=PALETA[1], linewidth=2)
+    ax.plot(train_sizes, val_mean, label="Validação", color=PALETA[3], linewidth=2)
 
     ax.set_xlabel("Tamanho do conjunto de treino")
     ax.set_ylabel(scoring.upper())
@@ -104,37 +112,63 @@ def plot_learning_curve(
     plt.tight_layout()
     return fig
 
-def plot_model_comparison(
-    results_df,
-    metrics,
-    model_col="model"
-):
-    if isinstance(metrics, str):
-        metrics = [metrics]
 
-    n_models = len(results_df)
-    n_metrics = len(metrics)
+def plot_model_comparison(results_dict):
 
-    x = np.arange(n_models)
-    width = 0.8 / n_metrics
+    metricas = list(next(iter(results_dict.values())).keys())
 
-    fig, ax = plt.subplots(figsize=(8, 4))
+    results_pct = {
+        model: [v * 100 for v in results_dict[model].values()]
+        for model in results_dict
+    }
 
-    for i, metric in enumerate(metrics):
-        ax.bar(
-            x + i * width,
-            results_df[metric],
-            width,
-            label=metric.replace("_mean", "").upper()
+    medias = {model: np.mean(vals) for model, vals in results_pct.items()}
+    ordenados = sorted(medias.items(), key=lambda x: x[1], reverse=True)
+    modelos_ordenados = [x[0] for x in ordenados]
+
+    valores_plot = [results_pct[m] for m in modelos_ordenados]
+
+    x = np.arange(len(modelos_ordenados))
+    largura = 0.8 / len(metricas)
+
+    plt.figure(figsize=(12, 6))
+
+    for i, metrica in enumerate(metricas):
+        valores = [v[i] for v in valores_plot]
+
+        bars = plt.bar(
+            x + (i - (len(metricas) - 1) / 2) * largura,
+            valores,
+            width=largura,
+            label=metrica.capitalize(),
+            color=PALETA[i % len(PALETA)]
         )
 
-    ax.set_xticks(x + width * (n_metrics - 1) / 2)
-    ax.set_xticklabels(results_df[model_col], rotation=30, ha="right")
+        for bar, v in zip(bars, valores):
+            plt.text(
+                bar.get_x() + bar.get_width() / 2,
+                bar.get_height() + 0.3,
+                f"{v:.2f}%",
+                ha="center",
+                va="bottom"
+            )
 
-    ax.set_ylabel("Score")
-    ax.set_title("Comparação de Modelos por Métricas")
-    ax.legend()
+    ymax = max(max(vals) for vals in results_pct.values()) + 5
+    plt.ylim(75, ymax)
 
+    plt.ylabel("Percentual (%)")
+    plt.xticks(x, modelos_ordenados)
+    plt.title("Comparação dos Modelos por Ranking")
+    plt.grid(axis='y', linestyle='--', alpha=0.4)
+    plt.legend(title="Métricas", bbox_to_anchor=(1.15, 1))
     plt.tight_layout()
-    return fig
+    plt.show()
 
+
+def rank_models(results_dict):
+    medias = {
+        model: np.mean(list(metrics.values()))
+        for model, metrics in results_dict.items()
+    }
+
+    return sorted(medias.items(), key=lambda x: x[1], reverse=True)

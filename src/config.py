@@ -5,10 +5,8 @@ definições dos modelos que serão testados. Apenas arquivo descritivo, não pa
 
 """
 
-from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 
 RANDOM_STATE = 42
