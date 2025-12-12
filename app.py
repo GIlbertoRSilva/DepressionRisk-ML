@@ -1,7 +1,12 @@
+
 import streamlit as st
 import pandas as pd
 import time
 from scripts import predict
+
+with open("style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 
 st.set_page_config(page_title="Predição de Risco de Depressão", layout="wide")
 st.title("Predição do Risco de Depressão em Universitários")

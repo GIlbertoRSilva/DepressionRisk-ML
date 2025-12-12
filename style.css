@@ -1,0 +1,81 @@
+/* ======== GLOBAL ======== */
+html, body, [class*="css"] {
+    color: #E3ECF7 !important;
+    background-color: #0A0F1C !important;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+    color: #6EC6FF !important;
+}
+
+/* ======== LAYOUT FUTURISTA ======== */
+[data-testid="stAppViewContainer"] {
+    background: radial-gradient(circle at 20% 30%, #0D47A133 0%, #0A0F1C 70%);
+}
+
+[data-testid="stHeader"] {
+    background: linear-gradient(90deg, #0A0F1C 0%, #111829 100%);
+    border-bottom: 1px solid #1E88E533;
+}
+
+/* ======== CARDS / BOXES ======== */
+.block-container {
+    padding-top: 2rem;
+}
+
+div[data-testid="stSidebar"] {
+    backdrop-filter: blur(12px);
+    background: rgba(17, 24, 41, 0.65) !important;
+    border-right: 1px solid #1E88E533;
+}
+
+.stContainer, .stCard, .stMetric {
+    background: linear-gradient(145deg, #111829, #0A0F1C);
+    border-radius: 14px;
+    border: 1px solid #1E88E533;
+    padding: 1.2rem;
+}
+
+/* ======== BOTÕES ======== */
+.stButton>button {
+    background: rgba(30, 136, 229, 0.15);
+    border: 1px solid #1E88E5;
+    color: #E3ECF7;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+.stButton>button:hover {
+    background: #1E88E5;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ======== GRAFICOS ======== */
+.js-plotly-plot .plotly .main-svg {
+    background: transparent !important;
+}
+
+svg text {
+    fill: #E3ECF7 !important;
+}
+
+/* ======== INPUTS ======== */
+.stTextInput>div>div>input,
+.stSelectbox>div>div>div {
+    background-color: #111829 !important;
+    border: 1px solid #1E88E533 !important;
+    border-radius: 8px !important;
+    color: #E3ECF7 !important;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+    h1 { font-size: 1.7rem !important; }
+    h2 { font-size: 1.3rem !important; }
+    .stButton>button { width: 100%; }
+    .stContainer, .stMetric { padding: 0.9rem; }
+}
