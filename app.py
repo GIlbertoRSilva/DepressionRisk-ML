@@ -24,16 +24,16 @@ with tab1:
 
     user_input = {}
     user_input["Gender"] = select_option("Gender", key="gender_ind")
-    user_input["Age"] = st.slider("Age", 16, 60, 22, key="age_ind")
+    user_input["Age"] = st.slider("Age", 16, 60, 21, step=1,key="age_ind")
     user_input["Academic Pressure"] = st.slider("Academic Pressure (1-5)", 1, 5, 3, key="acad_ind")
-    user_input["CGPA"] = st.slider("CGPA", 0.0, 10.0, 8.0, step=0.1, key="cgpa_ind")
-    user_input["Study Satisfaction"] = st.slider("Study Satisfaction (1-5)", 1, 5, 4, key="study_ind")
-    user_input["Sleep Duration"] = st.slider("Sleep Duration (hours)", 0, 12, 6, key="sleep_ind")
+    user_input["CGPA"] = st.slider("CGPA", 0.0, 10.0, 6.0, step=0.1, key="cgpa_ind")
+    user_input["Study Satisfaction"] = st.slider("Study Satisfaction (1-5)", 1, 5, 3, key="study_ind")
+    user_input["Sleep Duration"] = st.slider("Sleep Duration (hours)", 0, 16, 8, step=1,key="sleep_ind")
     user_input["Dietary Habits"] = select_option("Dietary Habits", key="diet_ind")
     user_input["Have you ever had suicidal thoughts ?"] = select_option(
         "Have you ever had suicidal thoughts ?", key="suicide_ind"
     )
-    user_input["Work/Study Hours"] = st.slider("Work/Study Hours per day", 0, 16, 5, key="work_ind")
+    user_input["Work/Study Hours"] = st.slider("Work/Study Hours per day", 0, 16, 5,step=1,key="work_ind")
     user_input["Financial Stress"] = st.slider("Financial Stress (1-5)", 1, 5, 2, key="finance_ind")
     user_input["Family History of Mental Illness"] = select_option(
         "Family History of Mental Illness", key="family_ind"
@@ -99,7 +99,7 @@ with tab2:
                 # Threshold
                 threshold_csv = st.slider("Threshold de risco", 0.0, 1.0, 0.5, step=0.01, key="threshold_csv")
                 
-                if st.button("🔍 Prever risco para todos os alunos", key="btn_csv"):
+                if st.button("Prever risco para todos os alunos", key="btn_csv"):
                     results = []
                     progress_bar = st.progress(0)
                     status_text = st.empty()

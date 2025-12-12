@@ -3,6 +3,7 @@
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()
 [![Status](https://img.shields.io/badge/status-active-brightgreen)]()
+[![DOI](https://zenodo.org/badge/1110932673.svg)](https://doi.org/10.5281/zenodo.17914238)
 
 An end-to-end Machine Learning project designed to predict depression risk among university students using multiple classification algorithms. The project includes a complete training pipeline, exploratory notebooks, and an interactive interface built with Streamlit.
 
