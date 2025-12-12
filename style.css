@@ -1,20 +1,16 @@
-/* ------------------------------
-   GLOBAL — Dark Premium Minimalista
---------------------------------*/
+
 html, body, [class*="css"] {
     background-color: #0B1622 !important;
     color: #E8EEF5 !important;
     font-family: "Inter", sans-serif;
 }
 
-/* Layout responsivo */
+
 .block-container {
     padding-top: 1.5rem !important;
 }
 
-/* ------------------------------
-   CARDS — Dark clean com leve profundidade
---------------------------------*/
+
 div[data-testid="stCard"], .stMarkdown, .stDataFrame {
     background: #122033 !important;
     border-radius: 14px !important;
@@ -22,18 +18,14 @@ div[data-testid="stCard"], .stMarkdown, .stDataFrame {
     border: 1px solid rgba(74, 163, 255, 0.08) !important;
 }
 
-/* ------------------------------
-   HEADERS — Azul suave + elegância
---------------------------------*/
+
 h1, h2, h3, h4 {
     color: #DDE8F5 !important;
     font-weight: 700 !important;
     letter-spacing: 0.3px;
 }
 
-/* ------------------------------
-   BOTÕES — Azul profissional
---------------------------------*/
+
 .stButton > button {
     background-color: #1E88E5 !important;
     color: #FFFFFF !important;
@@ -49,9 +41,6 @@ h1, h2, h3, h4 {
     transform: translateY(-2px);
 }
 
-/* ------------------------------
-   INPUTS — Minimal dark com bordas suaves
---------------------------------*/
 .stTextInput, .stNumberInput, .stTextArea {
     background-color: #0F1924 !important;
 }
@@ -61,31 +50,23 @@ label {
     font-weight: 600;
 }
 
-/* ------------------------------
-   SLIDERS — Azul apenas até o valor selecionado
---------------------------------*/
-/* Track vazio */
 .stSlider > div > div > div {
     background-color: #0F1924 !important;
     border-radius: 4px !important;
 }
 
-/* Parte preenchida */
+
 .stSlider > div > div > div > div[style*="background: rgb"] {
     background-color: #4AA3FF !important; 
     border-radius: 4px !important;
 }
 
-/* Thumb (bolinha) */
 .stSlider [role="slider"] {
     background-color: #4AA3FF !important;
     border: 2px solid #1E88E5 !important;
     box-shadow: 0px 0px 4px rgba(78, 160, 255, 0.5);
 }
 
-/* ------------------------------
-   TABS — Simples, modernas e elegantes
---------------------------------*/
 .stTabs [data-baseweb="tab"] {
     color: #AFC7E6;
     font-weight: 500;
@@ -99,34 +80,29 @@ label {
     font-weight: 700;
 }
 
-/* ------------------------------
-   SELECTBOX — Fundo do container igual ao app
---------------------------------*/
+
 .stSelectbox > div > div {
-    background-color: #0B1622 !important; /* fundo igual ao app */
+    background-color: #0B1622 !important; 
     border: 1px solid rgba(74, 163, 255, 0.1) !important;
     border-radius: 6px !important;
     color: #E8EEF5 !important;
 }
 
-/* Items dentro do selectbox */
 .stSelectbox > div > div > div > div {
-    background-color: transparent !important; /* fundo transparente */
+    background-color: transparent !important; 
     color: #E8EEF5 !important;
 }
 
-/* ------------------------------
-   RADIO BUTTONS — Fundo do container igual ao app
---------------------------------*/
+
 .stRadio > div {
-    background-color: #0B1622 !important; /* fundo igual ao app */
+    background-color: #0B1622 !important; 
     padding: 0 !important;
     border: none !important;
 }
 
-/* Cada label (opção) */
+
 .stRadio > div > label {
-    background-color: transparent !important; /* apenas a selecionada será azul */
+    background-color: transparent !important; 
     border: 1px solid rgba(74, 163, 255, 0.1) !important;
     border-radius: 6px !important;
     padding: 6px 12px !important;
@@ -136,29 +112,24 @@ label {
     transition: all 0.15s ease-in-out;
 }
 
-/* Hover */
+
 .stRadio > div > label:hover {
     background-color: rgba(74, 163, 255, 0.05) !important;
     border-color: #4AA3FF !important;
 }
 
-/* Opção selecionada */
 .stRadio > div > input:checked + label {
     background-color: #4AA3FF !important;
     color: white !important;
     border-color: #1E88E5 !important;
 }
 
-/* ------------------------------
-   DATAFRAME — Melhor contraste e leitura
---------------------------------*/
+
 .stDataFrame div {
     color: #E8EEF5 !important;
 }
 
-/* ------------------------------
-   RESPONSIVIDADE — Mobile first
---------------------------------*/
+
 @media (max-width: 768px) {
     .block-container {
         padding: 1rem !important;
