@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it using the following metadata."
+title: "DepressionRisk-ML: Machine Learning for Predicting Depression Risk in University Students"
+version: "1.0.0"
+doi: ""
+date-released: "2025-12-12"
+url: "https://github.com/GilbertoRSilva/DepressionRisk-ML"
+
+authors:
+  - family-names: "Silva"
+    given-names: "G. R."
+    email: "gilberto.rodrigues07@aluno.ifce.edu.br"
+    affiliation: "Instituto Federal do Ceará (IFCE)"
+
+keywords:
+  - machine learning
+  - depression prediction
+  - student mental health
+  - classification models
+  - data science
+  - Python
+  - research software
+
+license: "MIT"
+
+abstract: >
+  DepressionRisk-ML is a machine learning project developed to predict the risk of depression among university students.
+  It integrates multiple classification algorithms, including KNN, SVM, and MLP, with a complete preprocessing pipeline,
+  cross-validation methodology, interactive Streamlit application, and reproducible training structure. This work aims
+  to support research and experimentation in mental health prediction using open and transparent machine learning tools.
