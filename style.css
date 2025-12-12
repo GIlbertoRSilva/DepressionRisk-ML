@@ -1,16 +1,19 @@
-
+/* ------------------------------
+   GLOBAL — Dark Premium Minimalista
+--------------------------------*/
 html, body, [class*="css"] {
     background-color: #0B1622 !important;
     color: #E8EEF5 !important;
     font-family: "Inter", sans-serif;
 }
 
-
 .block-container {
     padding-top: 1.5rem !important;
 }
 
-
+/* ------------------------------
+   CARDS — Fundo escuro e bordas suaves
+--------------------------------*/
 div[data-testid="stCard"], .stMarkdown, .stDataFrame {
     background: #122033 !important;
     border-radius: 14px !important;
@@ -18,14 +21,18 @@ div[data-testid="stCard"], .stMarkdown, .stDataFrame {
     border: 1px solid rgba(74, 163, 255, 0.08) !important;
 }
 
-
+/* ------------------------------
+   HEADERS
+--------------------------------*/
 h1, h2, h3, h4 {
     color: #DDE8F5 !important;
     font-weight: 700 !important;
     letter-spacing: 0.3px;
 }
 
-
+/* ------------------------------
+   BOTÕES
+--------------------------------*/
 .stButton > button {
     background-color: #1E88E5 !important;
     color: #FFFFFF !important;
@@ -41,68 +48,32 @@ h1, h2, h3, h4 {
     transform: translateY(-2px);
 }
 
-.stTextInput, .stNumberInput, .stTextArea {
-    background-color: #0F1924 !important;
-}
-
-label {
-    color: #E8EEF5 !important;
-    font-weight: 600;
-}
-
-.stSlider > div > div > div {
-    background-color: #0F1924 !important;
-    border-radius: 4px !important;
-}
-
-
-.stSlider > div > div > div > div[style*="background: rgb"] {
-    background-color: #4AA3FF !important; 
-    border-radius: 4px !important;
-}
-
-.stSlider [role="slider"] {
-    background-color: #4AA3FF !important;
-    border: 2px solid #1E88E5 !important;
-    box-shadow: 0px 0px 4px rgba(78, 160, 255, 0.5);
-}
-
-.stTabs [data-baseweb="tab"] {
-    color: #AFC7E6;
-    font-weight: 500;
-    padding: 10px 16px;
-    border-bottom: 2px solid transparent !important;
-}
-
-.stTabs [aria-selected="true"] {
-    color: #4AA3FF !important;
-    border-bottom: 2px solid #4AA3FF !important;
-    font-weight: 700;
-}
-
-
+/* ------------------------------
+   SELECTBOX — Fundo igual ao app
+--------------------------------*/
 .stSelectbox > div > div {
-    background-color: #0B1622 !important; 
+    background-color: #0B1622 !important;
     border: 1px solid rgba(74, 163, 255, 0.1) !important;
     border-radius: 6px !important;
     color: #E8EEF5 !important;
 }
 
 .stSelectbox > div > div > div > div {
-    background-color: transparent !important; 
+    background-color: transparent !important;
     color: #E8EEF5 !important;
 }
 
-
+/* ------------------------------
+   RADIO BUTTONS — Fundo igual ao app
+--------------------------------*/
 .stRadio > div {
-    background-color: #0B1622 !important; 
+    background-color: #0B1622 !important;
     padding: 0 !important;
     border: none !important;
 }
 
-
 .stRadio > div > label {
-    background-color: transparent !important; 
+    background-color: transparent !important;
     border: 1px solid rgba(74, 163, 255, 0.1) !important;
     border-radius: 6px !important;
     padding: 6px 12px !important;
@@ -111,7 +82,6 @@ label {
     color: #E8EEF5 !important;
     transition: all 0.15s ease-in-out;
 }
-
 
 .stRadio > div > label:hover {
     background-color: rgba(74, 163, 255, 0.05) !important;
@@ -124,12 +94,16 @@ label {
     border-color: #1E88E5 !important;
 }
 
-
+/* ------------------------------
+   DATAFRAME
+--------------------------------*/
 .stDataFrame div {
     color: #E8EEF5 !important;
 }
 
-
+/* ------------------------------
+   RESPONSIVIDADE
+--------------------------------*/
 @media (max-width: 768px) {
     .block-container {
         padding: 1rem !important;

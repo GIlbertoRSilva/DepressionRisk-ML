@@ -3,8 +3,10 @@ import streamlit as st
 import pandas as pd
 import time
 from scripts import predict
+import os
 
-with open("style.css") as f:
+css_file = os.path.join(os.path.dirname(__file__), "style.css")
+with open(css_file) as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
