@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import time
 from scripts import predict
-
+# Aplicação Streamlit para predição de risco de depressão
 with open("Style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
