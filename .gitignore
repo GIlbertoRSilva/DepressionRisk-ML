@@ -1,0 +1,88 @@
+# Environment
+.env
+.env.local
+.env.*.local
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+.jupyter/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Data (comentar se quiser versionar)
+# data/raw/*.csv
+# data/processed/*.csv
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Cache
+.cache/
+.pytest_cache/
+.hypothesis/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Streamlit
+.streamlit/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+
+# Models (opcional - comentar se quiser versionar)
+# models/*.joblib
+# models/*.pkl
+# models/*_metadata.json
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+.~*
