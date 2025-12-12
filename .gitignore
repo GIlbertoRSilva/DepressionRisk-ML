@@ -45,7 +45,7 @@ wheels/
 *.sublime-project
 *.sublime-workspace
 
-# Data (comentar se quiser versionar)
+# Data 
 # data/raw/*.csv
 # data/processed/*.csv
 
@@ -76,7 +76,7 @@ Thumbs.db
 htmlcov/
 .tox/
 
-# Models (opcional - comentar se quiser versionar)
+# Models 
 # models/*.joblib
 # models/*.pkl
 # models/*_metadata.json

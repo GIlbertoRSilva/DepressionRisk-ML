@@ -9,7 +9,7 @@ st.title("Predição do Risco de Depressão em Universitários")
 # Criação das abas
 tab1, tab2 = st.tabs(["Predição Individual", "Triagem via CSV"])
 
-# ===================== ABA 1: Predição Individual =====================
+
 with tab1:
     st.subheader("Informe os seus dados:")
 
@@ -41,7 +41,7 @@ with tab1:
 
     threshold = st.slider("Threshold de risco", 0.0, 1.0, 0.5, step=0.01, key="threshold_ind")
 
-    if st.button("🔍 Prever Risco", key="btn_ind"):
+    if st.button("Prever Risco", key="btn_ind"):
         try:
             result = predict.predict(user_input, model_name, threshold)
             st.success(result["message"])
@@ -50,7 +50,7 @@ with tab1:
         except Exception as e:
             st.error(f"Erro ao realizar predição: {e}")
 
-# ===================== ABA 2: Triagem via CSV =====================
+
 with tab2:
     st.subheader("Triagem de múltiplos alunos via CSV")
     uploaded_file = st.file_uploader("Envie um arquivo CSV com os dados dos alunos", type=["csv"], key="upload_csv")
@@ -137,7 +137,7 @@ with tab2:
                     # Botão para download
                     csv = results_df.to_csv(index=False).encode('utf-8')
                     st.download_button(
-                        label="📥 Baixar resultados",
+                        label="Baixar resultados",
                         data=csv,
                         file_name='resultados_triagem.csv',
                         mime='text/csv'

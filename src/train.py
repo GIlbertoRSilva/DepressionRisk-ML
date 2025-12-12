@@ -1,4 +1,6 @@
 import os
+import numpy as np
+
 import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import train_test_split
@@ -21,15 +23,18 @@ def load_data(train_path, target_col):
 
     return train, X_train, y_train
 
-def build_pipeline(model,use_scaler=True, use_smote=False,smote=None):
+def build_pipeline(model, use_scaler=True, use_smote=False, smote=None):
     steps = []
+
+    if use_smote:
+        if smote is None:
+            raise ValueError("SMOTE ativado, mas nenhum objeto foi fornecido.")
+        steps.append(("smote", smote))
 
     if use_scaler:
         steps.append(("scaler", StandardScaler()))
-    if use_smote and smote is not None:
-        steps.append(("smote", smote))
-    steps.append(("model", model))
 
+    steps.append(("model", model))
     return Pipeline(steps)
 
 
@@ -90,20 +95,8 @@ def evaluate_on_test(pipeline,X_test,y_test,threshold=0.5):
     print(f"F1-score:  {f1_score(y_test, preds, zero_division=0):.4f}")
 
 def train_final_model(model, X, y, use_scaler=True, use_smote=False, smote=None):
-    
-    steps = []
-
-    if use_scaler:
-        steps.append(("scaler", StandardScaler()))
-
-    if use_smote and smote is not None:
-        steps.append(("smote", smote))
-
-    steps.append(("model", model))
-
-    pipeline = Pipeline(steps)
+    pipeline = build_pipeline(model, use_scaler, use_smote, smote)
     pipeline.fit(X, y)
-
     return pipeline
 
 def run_gridsearch(
@@ -147,8 +140,7 @@ def run_gridsearch(
         "grid_object": grid
     }
 
-import numpy as np
-from sklearn.metrics import f1_score
+
 
 def find_best_threshold(
     model,
