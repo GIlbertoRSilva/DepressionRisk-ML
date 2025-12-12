@@ -1,81 +1,172 @@
-/* ======== GLOBAL ======== */
+/* ------------------------------
+   GLOBAL — Dark Premium Minimalista
+--------------------------------*/
 html, body, [class*="css"] {
-    color: #E3ECF7 !important;
-    background-color: #0A0F1C !important;
+    background-color: #0B1622 !important;
+    color: #E8EEF5 !important;
+    font-family: "Inter", sans-serif;
 }
 
-h1, h2, h3, h4 {
-    font-weight: 600 !important;
-    letter-spacing: 0.5px;
-    color: #6EC6FF !important;
-}
-
-/* ======== LAYOUT FUTURISTA ======== */
-[data-testid="stAppViewContainer"] {
-    background: radial-gradient(circle at 20% 30%, #0D47A133 0%, #0A0F1C 70%);
-}
-
-[data-testid="stHeader"] {
-    background: linear-gradient(90deg, #0A0F1C 0%, #111829 100%);
-    border-bottom: 1px solid #1E88E533;
-}
-
-/* ======== CARDS / BOXES ======== */
+/* Layout responsivo */
 .block-container {
-    padding-top: 2rem;
+    padding-top: 1.5rem !important;
 }
 
-div[data-testid="stSidebar"] {
-    backdrop-filter: blur(12px);
-    background: rgba(17, 24, 41, 0.65) !important;
-    border-right: 1px solid #1E88E533;
+/* ------------------------------
+   CARDS — Dark clean com leve profundidade
+--------------------------------*/
+div[data-testid="stCard"], .stMarkdown, .stDataFrame {
+    background: #122033 !important;
+    border-radius: 14px !important;
+    padding: 18px !important;
+    border: 1px solid rgba(74, 163, 255, 0.08) !important;
 }
 
-.stContainer, .stCard, .stMetric {
-    background: linear-gradient(145deg, #111829, #0A0F1C);
-    border-radius: 14px;
-    border: 1px solid #1E88E533;
-    padding: 1.2rem;
+/* ------------------------------
+   HEADERS — Azul suave + elegância
+--------------------------------*/
+h1, h2, h3, h4 {
+    color: #DDE8F5 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px;
 }
 
-/* ======== BOTÕES ======== */
-.stButton>button {
-    background: rgba(30, 136, 229, 0.15);
-    border: 1px solid #1E88E5;
-    color: #E3ECF7;
-    padding: 0.6rem 1.2rem;
-    border-radius: 10px;
-    transition: 0.25s;
+/* ------------------------------
+   BOTÕES — Azul profissional
+--------------------------------*/
+.stButton > button {
+    background-color: #1E88E5 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    padding: 0.55rem 1.2rem !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: 0.15s ease-in-out;
 }
 
-.stButton>button:hover {
-    background: #1E88E5;
-    color: white;
+.stButton > button:hover {
+    background-color: #0D47A1 !important;
     transform: translateY(-2px);
 }
 
-/* ======== GRAFICOS ======== */
-.js-plotly-plot .plotly .main-svg {
-    background: transparent !important;
+/* ------------------------------
+   INPUTS — Minimal dark com bordas suaves
+--------------------------------*/
+.stTextInput, .stNumberInput, .stTextArea {
+    background-color: #0F1924 !important;
 }
 
-svg text {
-    fill: #E3ECF7 !important;
+label {
+    color: #E8EEF5 !important;
+    font-weight: 600;
 }
 
-/* ======== INPUTS ======== */
-.stTextInput>div>div>input,
-.stSelectbox>div>div>div {
-    background-color: #111829 !important;
-    border: 1px solid #1E88E533 !important;
-    border-radius: 8px !important;
-    color: #E3ECF7 !important;
+/* ------------------------------
+   SLIDERS — Azul apenas até o valor selecionado
+--------------------------------*/
+/* Track vazio */
+.stSlider > div > div > div {
+    background-color: #0F1924 !important;
+    border-radius: 4px !important;
 }
 
-/* ======== RESPONSIVIDADE ======== */
+/* Parte preenchida */
+.stSlider > div > div > div > div[style*="background: rgb"] {
+    background-color: #4AA3FF !important; 
+    border-radius: 4px !important;
+}
+
+/* Thumb (bolinha) */
+.stSlider [role="slider"] {
+    background-color: #4AA3FF !important;
+    border: 2px solid #1E88E5 !important;
+    box-shadow: 0px 0px 4px rgba(78, 160, 255, 0.5);
+}
+
+/* ------------------------------
+   TABS — Simples, modernas e elegantes
+--------------------------------*/
+.stTabs [data-baseweb="tab"] {
+    color: #AFC7E6;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-bottom: 2px solid transparent !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: #4AA3FF !important;
+    border-bottom: 2px solid #4AA3FF !important;
+    font-weight: 700;
+}
+
+/* ------------------------------
+   SELECTBOX — Fundo do container igual ao app
+--------------------------------*/
+.stSelectbox > div > div {
+    background-color: #0B1622 !important; /* fundo igual ao app */
+    border: 1px solid rgba(74, 163, 255, 0.1) !important;
+    border-radius: 6px !important;
+    color: #E8EEF5 !important;
+}
+
+/* Items dentro do selectbox */
+.stSelectbox > div > div > div > div {
+    background-color: transparent !important; /* fundo transparente */
+    color: #E8EEF5 !important;
+}
+
+/* ------------------------------
+   RADIO BUTTONS — Fundo do container igual ao app
+--------------------------------*/
+.stRadio > div {
+    background-color: #0B1622 !important; /* fundo igual ao app */
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* Cada label (opção) */
+.stRadio > div > label {
+    background-color: transparent !important; /* apenas a selecionada será azul */
+    border: 1px solid rgba(74, 163, 255, 0.1) !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    margin: 2px !important;
+    font-weight: 500 !important;
+    color: #E8EEF5 !important;
+    transition: all 0.15s ease-in-out;
+}
+
+/* Hover */
+.stRadio > div > label:hover {
+    background-color: rgba(74, 163, 255, 0.05) !important;
+    border-color: #4AA3FF !important;
+}
+
+/* Opção selecionada */
+.stRadio > div > input:checked + label {
+    background-color: #4AA3FF !important;
+    color: white !important;
+    border-color: #1E88E5 !important;
+}
+
+/* ------------------------------
+   DATAFRAME — Melhor contraste e leitura
+--------------------------------*/
+.stDataFrame div {
+    color: #E8EEF5 !important;
+}
+
+/* ------------------------------
+   RESPONSIVIDADE — Mobile first
+--------------------------------*/
 @media (max-width: 768px) {
-    h1 { font-size: 1.7rem !important; }
-    h2 { font-size: 1.3rem !important; }
-    .stButton>button { width: 100%; }
-    .stContainer, .stMetric { padding: 0.9rem; }
+    .block-container {
+        padding: 1rem !important;
+    }
+    h1 {
+        font-size: 1.6rem !important;
+    }
+    .stButton > button {
+        width: 100%;
+    }
 }
