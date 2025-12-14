@@ -22,9 +22,9 @@ MAPPINGS = {
 }
 
 MODELS_INFO = {
-    "SVM": {"path": "models/svm.joblib", "description": "Bom para datasets pequenos e margens claras."},
-    "KNN": {"path": "models/knn.joblib", "description": "Simples e Consistente para padrões próximos."},
-    "MLP": {"path": "models/mlp.joblib", "description": "Capta relações não-lineares complexas, requer mais dados."}
+    "SVM": {"path": "models/svm.joblib", "description": "Apresenta a maior capacidade de identificar corretamente casos relevantes, ou seja, minimiza o risco de deixar de detectar situações importantes. Contudo, tende a apresentar uma precisão menor, indicando casos que não necessitam de acompanhamento."},
+    "KNN": {"path": "models/knn.joblib", "description": "Exibe um desempenho equilibrado. Quando classifica um caso como relevante, a probabilidade de acerto é alta, mas ele deixa de identificar algumas situações que também podem exigir atenção, resultando em um desempenho moderado."},
+    "MLP": {"path": "models/mlp.joblib", "description": "Apresenta o melhor desempenho geral, com maior acurácia. Esse modelo mantém um bom equilíbrio entre identificar corretamente casos relevantes e evitar falsas indicações, mostrando-se também o mais consistente nos testes."}
 }
 
 
