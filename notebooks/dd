@@ -1,0 +1,22 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path("..").resolve()))
+from src.synthetic_generator import SyntheticInputGenerator
+import pandas as pd
+
+df_real = pd.read_csv("../data/processed/train_dataset.csv")
+
+
+generator = SyntheticInputGenerator()
+generator.fit(df_real)
+
+df_demo = generator.sample(500)
+
+df_demo.head()
+
+df_demo["Age"] = df_demo["Age"].clip(15, 45).round(0)
+df_demo["CGPA"] = df_demo["CGPA"].clip(0, 10).round(2)
+df_demo["Sleep Duration"] = df_demo["Sleep Duration"].clip(0, 12).round(1)
+df_demo["Work/Study Hours"] = df_demo["Work/Study Hours"].clip(0, 16).round(1)
+
+df_demo.to_csv("../data/processed/demo.csv", index=False)
